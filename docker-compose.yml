@@ -1,0 +1,28 @@
+# Start the database and the API:  docker compose up --build
+# Then open http://localhost:8000/docs
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: zod
+      POSTGRES_PASSWORD: zod
+      POSTGRES_DB: zod
+    ports: ["5433:5432"]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "zod"]
+      interval: 5s
+      retries: 10
+    volumes: [pgdata:/var/lib/postgresql/data]
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://zod:zod@db:5432/zod
+      CORS_ORIGINS: http://localhost:3100
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

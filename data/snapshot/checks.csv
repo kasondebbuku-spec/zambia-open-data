@@ -1,0 +1,14 @@
+dataset,name,status,detail
+revenue 2024,Revenue lines add up to the book's totals,warn,"Off by rounding in the book itself: Fees and Charges 2024: lines add up to K94,283,077, book says K94,283,075; Fees and Charges 2025: lines add up to K103,711,383, book says K103,711,382; Fees and Charges 2026: lines add up to K114,082,521, book says K114,082,520; National Support (Grants) 2026: lines add up to K139,284,275, book says K139,284,276; Grand total 2025: sub-totals add up to K769,575,666, book says K769,575,665"
+spending by economic 2024,Spending lines add up to the head total,pass,7 lines agree with the head total
+spending by programme 2024,Spending lines add up to the head total,warn,"Off by rounding in the book itself: 2024: lines add up to K732,090,167, book says K732,090,165"
+budget 2024,Revenue equals spending by economic,pass,"revenue K732,090,165, spending K732,090,165"
+budget 2024,Revenue equals spending by programme,pass,"revenue K732,090,165, spending K732,090,165"
+revenue 2025,Revenue lines add up to the book's totals,warn,"Off by rounding in the book itself: Fees and Charges 2025: lines add up to K131,976,862, book says K131,976,860; Fees and Charges 2026: lines add up to K145,174,547, book says K145,174,546; Fees and Charges 2027: lines add up to K159,691,387, book says K159,691,386; Licenses 2026: lines add up to K7,145,289, book says K7,145,288; Licenses 2027: lines add up to K7,859,816, book says K7,859,817; Permits 2027: lines add up to K112,927,104, book says K112,927,103; National Support (Grants) 2026: lines add up to K363,546,516, book says K363,546,515; Grand total 2026: sub-totals add up to K1,135,556,345, book says K1,135,556,346; Grand total 2027: sub-totals add up to K1,197,204,460, book says K1,197,204,461"
+spending by economic 2025,Spending lines add up to the head total,pass,7 lines agree with the head total
+spending by programme 2025,Spending lines add up to the head total,warn,"Off by rounding in the book itself: 2024: lines add up to K732,090,167, book says K732,090,165; 2025: lines add up to K1,079,607,655, book says K1,079,607,654"
+budget 2025,Revenue equals spending by economic,pass,"revenue K1,079,607,654, spending K1,079,607,654"
+budget 2025,Revenue equals spending by programme,pass,"revenue K1,079,607,654, spending K1,079,607,654"
+spending by economic 2025,2024 figures match the 2024 book,warn,"The 2025 book restates: Personal Emoluments: K210,171,370 to K210,165,370; Goods and Services: K224,550,733 to K225,202,017; Non-Financial Assets: K178,965,894 to K178,320,610"
+spending by programme 2025,2024 figures match the 2024 book,warn,"The 2025 book restates: Fisheries and Livestock: blank to K78,000"
+cdf stories,Duplicate posts removed,warn,"The same article was posted more than once; kept the newest. Dropped post ids: 5953, 6929"

@@ -1,0 +1,29 @@
+[
+ {
+  "key": "budget-2024",
+  "title": "Approved budget 2024",
+  "url": "https://www.lcc.gov.zm/download/lusaka-city-council-approved-budget-for-2024/",
+  "file": "budget-2024.pdf",
+  "sha256": "c0e15c86de19f715083e0ec8ead904b58e9f143638defcc52ada2a465668a9b6",
+  "bytes": 1711702,
+  "fetched_at": "2026-11-24T10:00:33+00:00"
+ },
+ {
+  "key": "budget-2025",
+  "title": "Approved budget 2025",
+  "url": "https://www.lcc.gov.zm/download/lusaka-city-council-approved-2025-budget-yellow-book/",
+  "file": "budget-2025.pdf",
+  "sha256": "31809f0187563edec3234a8d1013f8a592a41704cb8a4367a30e156e70fadb7f",
+  "bytes": 1843478,
+  "fetched_at": "2026-11-24T10:00:40+00:00"
+ },
+ {
+  "key": "news",
+  "title": "Lusaka City Council news posts",
+  "url": "https://www.lcc.gov.zm/wp-json/wp/v2/posts",
+  "file": "posts.json",
+  "sha256": "4caadc498c41ff35213869892ae05e28a5ea087f7eb225de92b7547f101be3f6",
+  "bytes": 737420,
+  "fetched_at": "2026-11-24T10:00:47+00:00"
+ }
+]

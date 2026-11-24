@@ -1,0 +1,349 @@
+book_year,line,fiscal_year,stage,group_code,group_name,item_code,item_name,amount_zmw
+2024,1,2024,budget,01,Local taxes/rates,001,Residential,68506052
+2024,1,2025,projection,01,Local taxes/rates,001,Residential,68506052
+2024,1,2026,projection,01,Local taxes/rates,001,Residential,68506052
+2024,2,2024,budget,01,Local taxes/rates,002,Commercial,64160927
+2024,2,2025,projection,01,Local taxes/rates,002,Commercial,64160927
+2024,2,2026,projection,01,Local taxes/rates,002,Commercial,64160927
+2024,3,2024,budget,01,Local taxes/rates,001,Personal levy,2625000
+2024,3,2025,projection,01,Local taxes/rates,001,Personal levy,2887500
+2024,3,2026,projection,01,Local taxes/rates,001,Personal levy,3176250
+2024,4,2024,budget,02,Fees and Charges,002,Survey fees,171547
+2024,4,2025,projection,02,Fees and Charges,002,Survey fees,188701
+2024,4,2026,projection,02,Fees and Charges,002,Survey fees,207571
+2024,5,2024,budget,02,Fees and Charges,003,Building inspection-fees,1045000
+2024,5,2025,projection,02,Fees and Charges,003,Building inspection-fees,1149500
+2024,5,2026,projection,02,Fees and Charges,003,Building inspection-fees,1264450
+2024,6,2024,budget,02,Fees and Charges,004,Plan scrutiny fee,5896668
+2024,6,2025,projection,02,Fees and Charges,004,Plan scrutiny fee,6486334
+2024,6,2026,projection,02,Fees and Charges,004,Plan scrutiny fee,7134968
+2024,7,2024,budget,02,Fees and Charges,005,Change of premise use,285581
+2024,7,2025,projection,02,Fees and Charges,005,Change of premise use,314139
+2024,7,2026,projection,02,Fees and Charges,005,Change of premise use,345552
+2024,8,2024,budget,02,Fees and Charges,006,Container/Ntemba fees,787440
+2024,8,2025,projection,02,Fees and Charges,006,Container/Ntemba fees,866184
+2024,8,2026,projection,02,Fees and Charges,006,Container/Ntemba fees,952802
+2024,9,2024,budget,02,Fees and Charges,007,Rentals/lease of Council’s properties,14381290
+2024,9,2025,projection,02,Fees and Charges,007,Rentals/lease of Council’s properties,15819419
+2024,9,2026,projection,02,Fees and Charges,007,Rentals/lease of Council’s properties,17401361
+2024,10,2024,budget,02,Fees and Charges,008,Non-Land Application forms fees,150000
+2024,10,2025,projection,02,Fees and Charges,008,Non-Land Application forms fees,165000
+2024,10,2026,projection,02,Fees and Charges,008,Non-Land Application forms fees,181500
+2024,11,2024,budget,02,Fees and Charges,010,Sketch plan,70862
+2024,11,2025,projection,02,Fees and Charges,010,Sketch plan,77948
+2024,11,2026,projection,02,Fees and Charges,010,Sketch plan,85743
+2024,12,2024,budget,02,Fees and Charges,011,Search fees,316119
+2024,12,2025,projection,02,Fees and Charges,011,Search fees,347730
+2024,12,2026,projection,02,Fees and Charges,011,Search fees,382503
+2024,13,2024,budget,02,Fees and Charges,013,Market fees,1471320
+2024,13,2025,projection,02,Fees and Charges,013,Market fees,1618452
+2024,13,2026,projection,02,Fees and Charges,013,Market fees,1780297
+2024,14,2024,budget,02,Fees and Charges,014,Parking fees,7457200
+2024,14,2025,projection,02,Fees and Charges,014,Parking fees,8202920
+2024,14,2026,projection,02,Fees and Charges,014,Parking fees,9023212
+2024,15,2024,budget,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",2961975
+2024,15,2025,projection,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",3258173
+2024,15,2026,projection,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",3583990
+2024,16,2024,budget,02,Fees and Charges,020,Hire of halls,2628960
+2024,16,2025,projection,02,Fees and Charges,020,Hire of halls,2891856
+2024,16,2026,projection,02,Fees and Charges,020,Hire of halls,3181042
+2024,17,2024,budget,02,Fees and Charges,021,Hire of grounds/stadia,327900
+2024,17,2025,projection,02,Fees and Charges,021,Hire of grounds/stadia,360690
+2024,17,2026,projection,02,Fees and Charges,021,Hire of grounds/stadia,396759
+2024,18,2024,budget,02,Fees and Charges,022,Hoarding fees (Barricading),216000
+2024,18,2025,projection,02,Fees and Charges,022,Hoarding fees (Barricading),237600
+2024,18,2026,projection,02,Fees and Charges,022,Hoarding fees (Barricading),261360
+2024,19,2024,budget,02,Fees and Charges,025,Grave reservation,27296
+2024,19,2025,projection,02,Fees and Charges,025,Grave reservation,30026
+2024,19,2026,projection,02,Fees and Charges,025,Grave reservation,33028
+2024,20,2024,budget,02,Fees and Charges,026,Body remains (exhumation) fees,24000
+2024,20,2025,projection,02,Fees and Charges,026,Body remains (exhumation) fees,26400
+2024,20,2026,projection,02,Fees and Charges,026,Body remains (exhumation) fees,29040
+2024,21,2024,budget,02,Fees and Charges,027,Body remains (inspections)fees,25200
+2024,21,2025,projection,02,Fees and Charges,027,Body remains (inspections)fees,27720
+2024,21,2026,projection,02,Fees and Charges,027,Body remains (inspections)fees,30492
+2024,22,2024,budget,02,Fees and Charges,028,Boundary location (tombstone) fees,11128
+2024,22,2025,projection,02,Fees and Charges,028,Boundary location (tombstone) fees,12241
+2024,22,2026,projection,02,Fees and Charges,028,Boundary location (tombstone) fees,13465
+2024,23,2024,budget,02,Fees and Charges,030,Education fees,1633650
+2024,23,2025,projection,02,Fees and Charges,030,Education fees,1797015
+2024,23,2026,projection,02,Fees and Charges,030,Education fees,1976717
+2024,24,2024,budget,02,Fees and Charges,038,Library membership fees,88380
+2024,24,2025,projection,02,Fees and Charges,038,Library membership fees,97218
+2024,24,2026,projection,02,Fees and Charges,038,Library membership fees,106940
+2024,25,2024,budget,02,Fees and Charges,044,Rentals from parks,18000
+2024,25,2025,projection,02,Fees and Charges,044,Rentals from parks,19800
+2024,25,2026,projection,02,Fees and Charges,044,Rentals from parks,21780
+2024,26,2024,budget,02,Fees and Charges,045,Notice of marriage fees,4503270
+2024,26,2025,projection,02,Fees and Charges,045,Notice of marriage fees,4953597
+2024,26,2026,projection,02,Fees and Charges,045,Notice of marriage fees,5448957
+2024,27,2024,budget,02,Fees and Charges,046,Abattoir/meat inspection fees,6222600
+2024,27,2025,projection,02,Fees and Charges,046,Abattoir/meat inspection fees,6844860
+2024,27,2026,projection,02,Fees and Charges,046,Abattoir/meat inspection fees,7529346
+2024,28,2024,budget,02,Fees and Charges,063,Billboards and banners,28191320
+2024,28,2025,projection,02,Fees and Charges,063,Billboards and banners,31010452
+2024,28,2026,projection,02,Fees and Charges,063,Billboards and banners,34111497
+2024,29,2024,budget,02,Fees and Charges,066,Penalties,5499800
+2024,29,2025,projection,02,Fees and Charges,066,Penalties,6049780
+2024,29,2026,projection,02,Fees and Charges,066,Penalties,6654758
+2024,30,2024,budget,02,Fees and Charges,067,Ablution Fee,880800
+2024,30,2025,projection,02,Fees and Charges,067,Ablution Fee,968880
+2024,30,2026,projection,02,Fees and Charges,067,Ablution Fee,1065768
+2024,31,2024,budget,02,Fees and Charges,085,Sale of fingerings,18000
+2024,31,2025,projection,02,Fees and Charges,085,Sale of fingerings,19800
+2024,31,2026,projection,02,Fees and Charges,085,Sale of fingerings,21780
+2024,32,2024,budget,02,Fees and Charges,099,Other fees and charges,8971771
+2024,32,2025,projection,02,Fees and Charges,099,Other fees and charges,9868948
+2024,32,2026,projection,02,Fees and Charges,099,Other fees and charges,10855843
+2024,33,2024,budget,03,Licenses,001,Occupancy licence,903704
+2024,33,2025,projection,03,Licenses,001,Occupancy licence,994075
+2024,33,2026,projection,03,Licenses,001,Occupancy licence,1093482
+2024,34,2024,budget,03,Licenses,002,Liquor licence,2113065
+2024,34,2025,projection,03,Licenses,002,Liquor licence,2324372
+2024,34,2026,projection,03,Licenses,002,Liquor licence,2556809
+2024,35,2024,budget,03,Licenses,003,Firearm and ammunition licence,330000
+2024,35,2025,projection,03,Licenses,003,Firearm and ammunition licence,363000
+2024,35,2026,projection,03,Licenses,003,Firearm and ammunition licence,399300
+2024,36,2024,budget,03,Licenses,004,Petroleum Storage licence,1786125
+2024,36,2025,projection,03,Licenses,004,Petroleum Storage licence,1964738
+2024,36,2026,projection,03,Licenses,004,Petroleum Storage licence,2161211
+2024,37,2024,budget,03,Licenses,005,Dog licence,1010000
+2024,37,2025,projection,03,Licenses,005,Dog licence,1111000
+2024,37,2026,projection,03,Licenses,005,Dog licence,1222100
+2024,38,2024,budget,03,Licenses,099,Other Licences,866462
+2024,38,2025,projection,03,Licenses,099,Other Licences,4033344
+2024,38,2026,projection,03,Licenses,099,Other Licences,4436679
+2024,39,2024,budget,04,Levies,001,Livestock Movement levy,1500
+2024,39,2025,projection,04,Levies,001,Livestock Movement levy,1650
+2024,39,2026,projection,04,Levies,001,Livestock Movement levy,1815
+2024,40,2024,budget,04,Levies,002,Birds levy,2500
+2024,40,2025,projection,04,Levies,002,Birds levy,6050
+2024,40,2026,projection,04,Levies,002,Birds levy,6655
+2024,41,2024,budget,04,Levies,004,Pole levy,575858
+2024,41,2025,projection,04,Levies,004,Pole levy,633444
+2024,41,2026,projection,04,Levies,004,Pole levy,696789
+2024,42,2024,budget,04,Levies,011,Telecommunication Mast,1560000
+2024,42,2025,projection,04,Levies,011,Telecommunication Mast,1716000
+2024,42,2026,projection,04,Levies,011,Telecommunication Mast,1887600
+2024,43,2024,budget,04,Levies,017,Trading (Wholesale) Business Levy,7349800
+2024,43,2025,projection,04,Levies,017,Trading (Wholesale) Business Levy,8084780
+2024,43,2026,projection,04,Levies,017,Trading (Wholesale) Business Levy,8893258
+2024,44,2024,budget,04,Levies,018,Trading (Retail) Consumable groceries business,11675328
+2024,44,2025,projection,04,Levies,018,Trading (Retail) Consumable groceries business,12842861
+2024,44,2026,projection,04,Levies,018,Trading (Retail) Consumable groceries business,14127147
+2024,45,2024,budget,04,Levies,019,Retail Merchants non-consumable business,13834650
+2024,45,2025,projection,04,Levies,019,Retail Merchants non-consumable business,15218115
+2024,45,2026,projection,04,Levies,019,Retail Merchants non-consumable business,16739927
+2024,46,2024,budget,04,Levies,022,Agent Consumables,5332800
+2024,46,2025,projection,04,Levies,022,Agent Consumables,5866080
+2024,46,2026,projection,04,Levies,022,Agent Consumables,6452688
+2024,47,2024,budget,04,Levies,099,Other levies,12032422
+2024,47,2025,projection,04,Levies,099,Other levies,12153262
+2024,47,2026,projection,04,Levies,099,Other levies,12286186
+2024,48,2024,budget,05,Permits,001,Health permits,24719167
+2024,48,2025,projection,05,Permits,001,Health permits,27191084
+2024,48,2026,projection,05,Permits,001,Health permits,29910192
+2024,49,2024,budget,05,Permits,005,Transportation of meat products,190750
+2024,49,2025,projection,05,Permits,005,Transportation of meat products,209825
+2024,49,2026,projection,05,Permits,005,Transportation of meat products,230808
+2024,50,2024,budget,05,Permits,008,Burial permits and grave sites,806780
+2024,50,2025,projection,05,Permits,008,Burial permits and grave sites,887458
+2024,50,2026,projection,05,Permits,008,Burial permits and grave sites,976204
+2024,51,2024,budget,05,Permits,009,Fire certificate,56096929
+2024,51,2025,projection,05,Permits,009,Fire certificate,61706621
+2024,51,2026,projection,05,Permits,009,Fire certificate,67877283
+2024,52,2024,budget,05,Permits,010,Extension of Business hours permits,72000
+2024,52,2025,projection,05,Permits,010,Extension of Business hours permits,79200
+2024,52,2026,projection,05,Permits,010,Extension of Business hours permits,87120
+2024,53,2024,budget,05,Permits,011,Social gathering permit,22500
+2024,53,2025,projection,05,Permits,011,Social gathering permit,24750
+2024,53,2026,projection,05,Permits,011,Social gathering permit,27225
+2024,54,2024,budget,05,Permits,099,"Primary, Secondary and Tertiary permits",1418126
+2024,54,2025,projection,05,Permits,099,"Primary, Secondary and Tertiary permits",1559939
+2024,54,2026,projection,05,Permits,099,"Primary, Secondary and Tertiary permits",1715932
+2024,55,2024,budget,06,Charges,099,Land Charges,12965000
+2024,55,2025,projection,06,Charges,099,Land Charges,14261500
+2024,55,2026,projection,06,Charges,099,Land Charges,15687650
+2024,56,2024,budget,07,Other Incomes,001,Interest on investments,11160000
+2024,56,2025,projection,07,Other Incomes,001,Interest on investments,12276000
+2024,56,2026,projection,07,Other Incomes,001,Interest on investments,13503600
+2024,57,2024,budget,07,Other Incomes,099,Other Income,900000
+2024,57,2025,projection,07,Other Incomes,099,Other Income,990000
+2024,57,2026,projection,07,Other Incomes,099,Other Income,1089000
+2024,58,2024,budget,08,National Support (Grants),002,Roads Grant,3742847
+2024,58,2025,projection,08,National Support (Grants),002,Roads Grant,3742847
+2024,58,2026,projection,08,National Support (Grants),002,Roads Grant,3742847
+2024,59,2024,budget,08,National Support (Grants),003,Health Grant,26387188
+2024,59,2025,projection,08,National Support (Grants),003,Health Grant,26387188
+2024,59,2026,projection,08,National Support (Grants),003,Health Grant,26387188
+2024,60,2024,budget,08,National Support (Grants),004,Local Government Equalisation Fund,41307058
+2024,60,2025,projection,08,National Support (Grants),004,Local Government Equalisation Fund,45437764
+2024,60,2026,projection,08,National Support (Grants),004,Local Government Equalisation Fund,49981540
+2024,61,2024,budget,08,National Support (Grants),005,Grants in lieu of Rates,48903058
+2024,61,2025,projection,08,National Support (Grants),005,Grants in lieu of Rates,53793364
+2024,61,2026,projection,08,National Support (Grants),005,Grants in lieu of Rates,59172700
+2024,62,2024,budget,09,Local Development Fund,001,Constituency Development Fund,214449494
+2024,62,2025,projection,09,Local Development Fund,001,Constituency Development Fund,214449494
+2024,62,2026,projection,09,Local Development Fund,001,Constituency Development Fund,214449494
+2025,1,2025,budget,01,Local taxes/rates,001,Residential,85077821
+2025,1,2026,projection,01,Local taxes/rates,001,Residential,93585603
+2025,1,2027,projection,01,Local taxes/rates,001,Residential,102944163
+2025,2,2025,budget,01,Local taxes/rates,002,Commercial,71313664
+2025,2,2026,projection,01,Local taxes/rates,002,Commercial,78445030
+2025,2,2027,projection,01,Local taxes/rates,002,Commercial,86289533
+2025,3,2025,budget,01,Local taxes/rates,001,Personal levy,2625000
+2025,3,2026,projection,01,Local taxes/rates,001,Personal levy,2887500
+2025,3,2027,projection,01,Local taxes/rates,001,Personal levy,3176250
+2025,4,2025,budget,02,Fees and Charges,002,Survey fees,171547
+2025,4,2026,projection,02,Fees and Charges,002,Survey fees,188701
+2025,4,2027,projection,02,Fees and Charges,002,Survey fees,207571
+2025,5,2025,budget,02,Fees and Charges,003,Building inspection-fees,1698198
+2025,5,2026,projection,02,Fees and Charges,003,Building inspection-fees,1868018
+2025,5,2027,projection,02,Fees and Charges,003,Building inspection-fees,2054820
+2025,6,2025,budget,02,Fees and Charges,004,Plan scrutiny fee,32637868
+2025,6,2026,projection,02,Fees and Charges,004,Plan scrutiny fee,35901654
+2025,6,2027,projection,02,Fees and Charges,004,Plan scrutiny fee,39491820
+2025,7,2025,budget,02,Fees and Charges,005,Change of premise use,485581
+2025,7,2026,projection,02,Fees and Charges,005,Change of premise use,534139
+2025,7,2027,projection,02,Fees and Charges,005,Change of premise use,586939
+2025,8,2025,budget,02,Fees and Charges,007,Rentals/lease of Council’s properties,5849830
+2025,8,2026,projection,02,Fees and Charges,007,Rentals/lease of Council’s properties,6434813
+2025,8,2027,projection,02,Fees and Charges,007,Rentals/lease of Council’s properties,7078294
+2025,9,2025,budget,02,Fees and Charges,011,Search fees,392403
+2025,9,2026,projection,02,Fees and Charges,011,Search fees,431643
+2025,9,2027,projection,02,Fees and Charges,011,Search fees,474807
+2025,10,2025,budget,02,Fees and Charges,013,Market fees,11848620
+2025,10,2026,projection,02,Fees and Charges,013,Market fees,13033482
+2025,10,2027,projection,02,Fees and Charges,013,Market fees,14336830
+2025,11,2025,budget,02,Fees and Charges,014,Parking fees,7457200
+2025,11,2026,projection,02,Fees and Charges,014,Parking fees,8202920
+2025,11,2027,projection,02,Fees and Charges,014,Parking fees,9023212
+2025,12,2025,budget,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",2810500
+2025,12,2026,projection,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",3091550
+2025,12,2027,projection,02,Fees and Charges,016,"Loading fees (buses, trucks, trains, taxies etc.)",3400705
+2025,13,2025,budget,02,Fees and Charges,020,Hire of halls,2628960
+2025,13,2026,projection,02,Fees and Charges,020,Hire of halls,2891856
+2025,13,2027,projection,02,Fees and Charges,020,Hire of halls,3181042
+2025,14,2025,budget,02,Fees and Charges,021,Hire of grounds/stadia,327900
+2025,14,2026,projection,02,Fees and Charges,021,Hire of grounds/stadia,360690
+2025,14,2027,projection,02,Fees and Charges,021,Hire of grounds/stadia,396759
+2025,15,2025,budget,02,Fees and Charges,022,Hoarding fees (Barricading),216000
+2025,15,2026,projection,02,Fees and Charges,022,Hoarding fees (Barricading),237600
+2025,15,2027,projection,02,Fees and Charges,022,Hoarding fees (Barricading),261360
+2025,16,2025,budget,02,Fees and Charges,025,Grave reservation,8530
+2025,16,2026,projection,02,Fees and Charges,025,Grave reservation,9383
+2025,16,2027,projection,02,Fees and Charges,025,Grave reservation,10321
+2025,17,2025,budget,02,Fees and Charges,026,Body remains (exhumation) fees,15000
+2025,17,2026,projection,02,Fees and Charges,026,Body remains (exhumation) fees,16500
+2025,17,2027,projection,02,Fees and Charges,026,Body remains (exhumation) fees,18150
+2025,18,2025,budget,02,Fees and Charges,027,Body remains (inspections)fees,10500
+2025,18,2026,projection,02,Fees and Charges,027,Body remains (inspections)fees,11550
+2025,18,2027,projection,02,Fees and Charges,027,Body remains (inspections)fees,12705
+2025,19,2025,budget,02,Fees and Charges,028,Boundary location (tombstone) fees,2140
+2025,19,2026,projection,02,Fees and Charges,028,Boundary location (tombstone) fees,2354
+2025,19,2027,projection,02,Fees and Charges,028,Boundary location (tombstone) fees,2589
+2025,20,2025,budget,02,Fees and Charges,030,Education fees,1633650
+2025,20,2026,projection,02,Fees and Charges,030,Education fees,1797015
+2025,20,2027,projection,02,Fees and Charges,030,Education fees,1976717
+2025,21,2025,budget,02,Fees and Charges,038,Library membership fees,88380
+2025,21,2026,projection,02,Fees and Charges,038,Library membership fees,97218
+2025,21,2027,projection,02,Fees and Charges,038,Library membership fees,106940
+2025,22,2025,budget,02,Fees and Charges,044,Rentals from parks,18000
+2025,22,2026,projection,02,Fees and Charges,044,Rentals from parks,19800
+2025,22,2027,projection,02,Fees and Charges,044,Rentals from parks,21780
+2025,23,2025,budget,02,Fees and Charges,045,Notice of marriage fees,4503270
+2025,23,2026,projection,02,Fees and Charges,045,Notice of marriage fees,4953597
+2025,23,2027,projection,02,Fees and Charges,045,Notice of marriage fees,5448957
+2025,24,2025,budget,02,Fees and Charges,046,Abattoir/meat inspection fees,255600
+2025,24,2026,projection,02,Fees and Charges,046,Abattoir/meat inspection fees,281160
+2025,24,2027,projection,02,Fees and Charges,046,Abattoir/meat inspection fees,309276
+2025,25,2025,budget,02,Fees and Charges,063,Billboards and banners,28191320
+2025,25,2026,projection,02,Fees and Charges,063,Billboards and banners,31010452
+2025,25,2027,projection,02,Fees and Charges,063,Billboards and banners,34111497
+2025,26,2025,budget,02,Fees and Charges,066,Penalties,3349000
+2025,26,2026,projection,02,Fees and Charges,066,Penalties,3683900
+2025,26,2027,projection,02,Fees and Charges,066,Penalties,4052290
+2025,27,2025,budget,02,Fees and Charges,070,Bulk Transportation of Opaque Beer,237743
+2025,27,2026,projection,02,Fees and Charges,070,Bulk Transportation of Opaque Beer,261517
+2025,27,2027,projection,02,Fees and Charges,070,Bulk Transportation of Opaque Beer,287669
+2025,28,2025,budget,02,Fees and Charges,085,Sale of fingerings,18000
+2025,28,2026,projection,02,Fees and Charges,085,Sale of fingerings,19800
+2025,28,2027,projection,02,Fees and Charges,085,Sale of fingerings,21780
+2025,29,2025,budget,02,Fees and Charges,099,Other fees and charges,27121122
+2025,29,2026,projection,02,Fees and Charges,099,Other fees and charges,29833235
+2025,29,2027,projection,02,Fees and Charges,099,Other fees and charges,32816557
+2025,30,2025,budget,03,Licenses,001,Occupancy licence,1296864
+2025,30,2026,projection,03,Licenses,001,Occupancy licence,1426551
+2025,30,2027,projection,03,Licenses,001,Occupancy licence,1569205
+2025,31,2025,budget,03,Licenses,002,Liquor licence,2113065
+2025,31,2026,projection,03,Licenses,002,Liquor licence,2324372
+2025,31,2027,projection,03,Licenses,002,Liquor licence,2556809
+2025,32,2025,budget,03,Licenses,003,Firearm and ammunition licence,330000
+2025,32,2026,projection,03,Licenses,003,Firearm and ammunition licence,363000
+2025,32,2027,projection,03,Licenses,003,Firearm and ammunition licence,399300
+2025,33,2025,budget,03,Licenses,004,Petroleum Storage licence,1786125
+2025,33,2026,projection,03,Licenses,004,Petroleum Storage licence,1964738
+2025,33,2027,projection,03,Licenses,004,Petroleum Storage licence,2161211
+2025,34,2025,budget,03,Licenses,005,Dog licence,110700
+2025,34,2026,projection,03,Licenses,005,Dog licence,121770
+2025,34,2027,projection,03,Licenses,005,Dog licence,133947
+2025,35,2025,budget,03,Licenses,099,Other Licences,858962
+2025,35,2026,projection,03,Licenses,099,Other Licences,944858
+2025,35,2027,projection,03,Licenses,099,Other Licences,1039344
+2025,36,2025,budget,04,Levies,004,Pole levy,575858
+2025,36,2026,projection,04,Levies,004,Pole levy,633444
+2025,36,2027,projection,04,Levies,004,Pole levy,696789
+2025,37,2025,budget,04,Levies,017,Trading (Wholesale) Business Levy,62806557
+2025,37,2026,projection,04,Levies,017,Trading (Wholesale) Business Levy,69087212
+2025,37,2027,projection,04,Levies,017,Trading (Wholesale) Business Levy,75995933
+2025,38,2025,budget,04,Levies,082,Item 082 (no description in the budget book),1560000
+2025,38,2026,projection,04,Levies,082,Item 082 (no description in the budget book),1716000
+2025,38,2027,projection,04,Levies,082,Item 082 (no description in the budget book),1887600
+2025,39,2025,budget,05,Permits,001,Health permits,35837274
+2025,39,2026,projection,05,Permits,001,Health permits,39421002
+2025,39,2027,projection,05,Permits,001,Health permits,43363102
+2025,40,2025,budget,05,Permits,003,Herbalist permit,322
+2025,40,2026,projection,05,Permits,003,Herbalist permit,354
+2025,40,2027,projection,05,Permits,003,Herbalist permit,390
+2025,41,2025,budget,05,Permits,005,Transportation of meat products,158000
+2025,41,2026,projection,05,Permits,005,Transportation of meat products,173800
+2025,41,2027,projection,05,Permits,005,Transportation of meat products,191180
+2025,42,2025,budget,05,Permits,008,Burial permits and grave sites,913260
+2025,42,2026,projection,05,Permits,008,Burial permits and grave sites,1004586
+2025,42,2027,projection,05,Permits,008,Burial permits and grave sites,1105045
+2025,43,2025,budget,05,Permits,009,Fire certificate,56096929
+2025,43,2026,projection,05,Permits,009,Fire certificate,61706621
+2025,43,2027,projection,05,Permits,009,Fire certificate,67877283
+2025,44,2025,budget,05,Permits,010,Extension of Business hours permits,120000
+2025,44,2026,projection,05,Permits,010,Extension of Business hours permits,132000
+2025,44,2027,projection,05,Permits,010,Extension of Business hours permits,145200
+2025,45,2025,budget,05,Permits,011,Social gathering permit,180000
+2025,45,2026,projection,05,Permits,011,Social gathering permit,198000
+2025,45,2027,projection,05,Permits,011,Social gathering permit,217800
+2025,46,2025,budget,05,Permits,099,"Primary, Secondary and Tertiary permits",118007
+2025,46,2026,projection,05,Permits,099,"Primary, Secondary and Tertiary permits",24640
+2025,46,2027,projection,05,Permits,099,"Primary, Secondary and Tertiary permits",27104
+2025,47,2025,budget,07,Other Incomes,001,Interest on investments,1102500
+2025,47,2026,projection,07,Other Incomes,001,Interest on investments,1212750
+2025,47,2027,projection,07,Other Incomes,001,Interest on investments,1334025
+2025,48,2025,budget,07,Other Incomes,002,Surplus/ Deficit from Commercial Ventures,15504000
+2025,48,2026,projection,07,Other Incomes,002,Surplus/ Deficit from Commercial Ventures,17054400
+2025,48,2027,projection,07,Other Incomes,002,Surplus/ Deficit from Commercial Ventures,18759840
+2025,49,2025,budget,08,National Support (Grants),002,Roads Grant,3200586
+2025,49,2026,projection,08,National Support (Grants),002,Roads Grant,3520645
+2025,49,2027,projection,08,National Support (Grants),002,Roads Grant,3872709
+2025,50,2025,budget,08,National Support (Grants),003,Health Grant,25248919
+2025,50,2026,projection,08,National Support (Grants),003,Health Grant,27773811
+2025,50,2027,projection,08,National Support (Grants),003,Health Grant,30551192
+2025,51,2025,budget,08,National Support (Grants),004,Local Government Equalisation Fund,41307058
+2025,51,2026,projection,08,National Support (Grants),004,Local Government Equalisation Fund,45437764
+2025,51,2027,projection,08,National Support (Grants),004,Local Government Equalisation Fund,49981540
+2025,52,2025,budget,08,National Support (Grants),005,Grants in lieu of Rates,17037960
+2025,52,2026,projection,08,National Support (Grants),005,Grants in lieu of Rates,18741756
+2025,52,2027,projection,08,National Support (Grants),005,Grants in lieu of Rates,20615931
+2025,53,2025,budget,08,National Support (Grants),099,Other Grants,267944309
+2025,53,2026,projection,08,National Support (Grants),099,Other Grants,268072540
+2025,53,2027,projection,08,National Support (Grants),099,Other Grants,268213595
+2025,54,2025,budget,09,Local Development Fund,001,Constituency Development Fund,252407054
+2025,54,2026,projection,09,Local Development Fund,001,Constituency Development Fund,252407054
+2025,54,2027,projection,09,Local Development Fund,001,Constituency Development Fund,252407054

@@ -1,0 +1,64 @@
+book_year,fiscal_year,stage,basis,code,name,amount_zmw
+2024,2024,budget,economic,21,Personal Emoluments,210171370
+2024,2024,budget,economic,22,Goods and Services,224550733
+2024,2024,budget,economic,26,Grants and Other Payments(Transfers),16298162
+2024,2024,budget,economic,27,Subsidies to Non-Financial Enterprises,40745404
+2024,2024,budget,economic,31,Non-Financial Assets,178965894
+2024,2024,budget,economic,32,Financial Assets,24447242
+2024,2024,budget,economic,41,Current Liabilities (Payable within one year),36911360
+2024,2024,budget,programme,1,Constituency Development,214449494
+2024,2024,budget,programme,2,Local Governance,26927202
+2024,2024,budget,programme,3,Integrated Development Planning,17563818
+2024,2024,budget,programme,4,Economic and business development,45442016
+2024,2024,budget,programme,5,Public health and Environmental protection,45361973
+2024,2024,budget,programme,6,Housing and Community Amenities,74379691
+2024,2024,budget,programme,7,Recreation Culture and Religion,10238975
+2024,2024,budget,programme,8,Education and skills development,22191335
+2024,2024,budget,programme,10,Public order and safety,49129370
+2024,2024,budget,programme,11,Management and support Services,136113405
+2024,2024,budget,programme,12,Resource Mobilisation and Management,64184320
+2024,2024,budget,programme,13,District Health servcies,26030568
+2024,2024,budget,programme,14,Veterinary services,78000
+2025,2024,prior,economic,21,Personal Emoluments,210165370
+2025,2025,budget,economic,21,Personal Emoluments,262516938
+2025,2024,prior,economic,22,Goods and Services,225202017
+2025,2025,budget,economic,22,Goods and Services,210118808
+2025,2024,prior,economic,26,Grants and Other Payments(Transfers),16298162
+2025,2025,budget,economic,26,Grants and Other Payments(Transfers),271501029
+2025,2024,prior,economic,27,Subsidies to Non-Financial Enterprises,40745404
+2025,2025,budget,economic,27,Subsidies to Non-Financial Enterprises,43597582
+2025,2024,prior,economic,31,Non-Financial Assets,178320610
+2025,2025,budget,economic,31,Non-Financial Assets,229951640
+2025,2024,prior,economic,32,Financial Assets,24447242
+2025,2025,budget,economic,32,Financial Assets,26365297
+2025,2024,prior,economic,41,Current Liabilities (Payable within one year),36911360
+2025,2025,budget,economic,41,Current Liabilities (Payable within one year),35556360
+2025,2024,prior,programme,1,Constituency Development,214449494
+2025,2025,budget,programme,1,Constituency Development,252407054
+2025,2024,prior,programme,2,Local Governance,26927202
+2025,2025,budget,programme,2,Local Governance,26920839
+2025,2024,prior,programme,3,Integrated Development Planning,17563818
+2025,2025,budget,programme,3,Integrated Development Planning,17901384
+2025,2024,prior,programme,4,Economic and business development,45442016
+2025,2025,budget,programme,4,Economic and business development,48207472
+2025,2024,prior,programme,5,Public health and Environmental protection,45361973
+2025,2025,budget,programme,5,Public health and Environmental protection,51068144
+2025,2024,prior,programme,6,Housing and Community Amenities,74379691
+2025,2025,budget,programme,6,Housing and Community Amenities,69919172
+2025,2024,prior,programme,7,Recreation Culture and Religion,10238975
+2025,2025,budget,programme,7,Recreation Culture and Religion,7558830
+2025,2024,prior,programme,8,Education and skills development,22191335
+2025,2025,budget,programme,8,Education and skills development,21425235
+2025,2024,prior,programme,10,Public order and safety,49129370
+2025,2025,budget,programme,10,Public order and safety,61319828
+2025,2024,prior,programme,11,Management and support Services,136113405
+2025,2025,budget,programme,11,Management and support Services,173904823
+2025,2024,prior,programme,12,Resource Mobilisation and Management,64184320
+2025,2025,budget,programme,12,Resource Mobilisation and Management,52851985
+2025,2024,prior,programme,13,District Health servcies,26030568
+2025,2025,budget,programme,13,District Health servcies,25141072
+2025,2025,budget,programme,15,Transport Services,3200586
+2025,2025,budget,programme,16,Agricultural Services,364887
+2025,2024,prior,programme,17,Fisheries and Livestock,78000
+2025,2025,budget,programme,17,Fisheries and Livestock,602667
+2025,2025,budget,programme,18,Social Protection and Community Development,266813677
