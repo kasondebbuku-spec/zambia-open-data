@@ -8,3 +8,5 @@ data/raw/
 .ruff_cache/
 node_modules/
 .next/
+*.tsbuildinfo
+next-env.d.ts

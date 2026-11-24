@@ -4,8 +4,8 @@
 
 Lusaka City Council publishes its approved budgets as PDF books and its Constituency
 Development Fund (CDF) projects as news posts. Both are public, but neither is easy to
-search, compare or reuse. This project turns them into clean, checked open data and serves
-it through a public API.
+search, compare or reuse. This project turns them into clean, checked open data, serves it
+through a public API, and shows it on an explorer website anyone can read.
 
 * **Budgets.** Every revenue line (rates, fees, levies, permits, grants, the CDF) and every
   spending line, by type and by programme, for the 2024 and 2025 books. Includes
@@ -39,6 +39,7 @@ flowchart LR
   raw -->|zod build<br/>parse + check| snap[data/snapshot<br/>CSV + checks + sources]
   snap -->|zod load<br/>one transaction| pg[(PostgreSQL)]
   pg --> api[FastAPI<br/>/v1/...]
+  api --> web[Next.js explorer<br/>charts + CDF stories]
   snap -.->|committed, so CI and<br/>deploys never need the site| ci[CI / Docker]
 ```
 
@@ -66,6 +67,37 @@ check:
 | Duplicate news posts | Never fails; the newest copy is kept and the dropped ids are listed |
 
 Today: **6 pass, 7 warn, 0 fail.**
+
+## Explorer website
+
+A Next.js site in [`web/`](web) reads the API on the server and shows:
+
+* **Overview:** the year's total and its growth, where the money comes from, where it goes,
+  the biggest changes from last year, and the latest CDF stories.
+* **Budgets:** for each year, spending by programme or by type, every line's change from last
+  year, and every revenue line, grouped as the council groups them.
+* **CDF projects:** stories per constituency, plus filters by constituency, sector, stage
+  and words. The filters are a plain form, so they work without JavaScript.
+* **About the data:** the method, every quality check and the source fingerprints.
+
+The charts follow a fixed spec rather than a chart library's defaults:
+
+* **Two forms only.** Ranked bars show sizes and diverging bars show changes. There are no
+  pie charts and no dual axes.
+* **Validated colours.** One blue for size; blue and orange for up and down. The palette was
+  checked for colour-blind separation and contrast in light and dark mode.
+* **Direction isn't colour-only.** Every change also carries a written +/− sign.
+* **Hover and focus.** Every bar has a tooltip on hover and on keyboard focus.
+* **Table view.** Every chart has a "Show as a table" view, so nothing depends on hovering
+  or on colour.
+
+The site has light and dark modes and works at phone width.
+
+```bash
+cd web
+npm install
+API_URL=http://localhost:8000 npm run dev     # http://localhost:3100
+```
 
 ## API
 
@@ -114,7 +146,8 @@ To rebuild the dataset from the council's website: `zod fetch && zod build`.
 ## Tests
 
 ```bash
-pytest       # 29 tests; API tests need TEST_DATABASE_URL (a database whose name ends in _test)
+pytest                  # 29 tests; API tests need TEST_DATABASE_URL (a database whose name ends in _test)
+cd web && npm test      # formatting, headline casing and query building
 ```
 
 * **Parsers** run on text copied from the real books, including their quirks: a revenue line
@@ -127,8 +160,12 @@ pytest       # 29 tests; API tests need TEST_DATABASE_URL (a database whose name
   paging, bad input and the 404 message. One test shows that a failed load leaves the old
   data in place.
 
-CI runs lint (ruff), strict type checking (mypy), the tests on PostgreSQL 16 and a Docker
-build on every push.
+CI runs two jobs on every push:
+
+* **API:** lint (ruff), strict type checking (mypy), the tests on PostgreSQL 16 and a Docker
+  build.
+* **Website:** lint, type checking, unit tests and a production build. Then it starts the
+  real API on the snapshot and smoke-tests every page, including the 404.
 
 ## Engineering decisions
 
@@ -153,8 +190,7 @@ build on every push.
 
 ## Roadmap
 
-* **Milestone 2:** a Next.js explorer with charts of revenue and spending, year-on-year
-  changes, and a CDF map by constituency.
+* ~~**Milestone 2:** the Next.js explorer.~~ Done.
 * **Milestone 3:** a public deployment with a live demo, a scheduled monthly refresh, and
   CSV downloads from the API.
 

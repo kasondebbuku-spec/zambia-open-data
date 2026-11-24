@@ -35,3 +35,56 @@ jobs:
         run: pytest
       - name: Build the API image
         run: docker build -t zambia-open-data .
+
+  web:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: zod
+          POSTGRES_PASSWORD: zod
+          POSTGRES_DB: zod
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U zod" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://zod:zod@localhost:5432/zod
+      API_URL: http://localhost:4100
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Lint, type check and unit tests
+        run: npm run lint && npm run typecheck && npm test
+      - run: npm run build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Start the API on the real snapshot
+        working-directory: .
+        run: |
+          pip install -e .
+          alembic upgrade head
+          zod load
+          uvicorn zod.api.main:app --port 4100 &
+          timeout 30 sh -c 'until curl -sf localhost:4100/health; do sleep 1; done'
+      - name: Smoke test every page against the API
+        run: |
+          npm start &
+          timeout 60 sh -c 'until curl -sf localhost:3100 >/dev/null; do sleep 1; done'
+          for page in / /budgets/2025 "/budgets/2025?by=economic" /budgets/2024 /cdf "/cdf?constituency=Matero&sector=education" /about; do
+            code=$(curl -s -o /tmp/page.html -w '%{http_code}' "localhost:3100$page")
+            echo "$code $page"
+            test "$code" = 200
+            grep -q "Zambia Open Data" /tmp/page.html
+          done
+          test "$(curl -s -o /dev/null -w '%{http_code}' localhost:3100/budgets/2019)" = 404
