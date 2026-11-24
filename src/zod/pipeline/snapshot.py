@@ -14,14 +14,44 @@ import shutil
 from collections.abc import Iterable, Sequence
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import IO, Any
 
 from .budget import BudgetBook, parse_book, pdf_lines
 from .checks import Check, run_all
 from .fetch import BUDGET_BOOKS
 from .news import Story, stories
 
-FILES = ("budget_books.csv", "revenue.csv", "spending.csv", "cdf_stories.csv", "checks.csv", "sources.json")
+# Column order of each CSV file. The API's downloads use the same headers, so a file
+# downloaded from the API is identical to the committed one.
+HEADERS: dict[str, tuple[str, ...]] = {
+    "budget_books.csv": ("year", "revenue_total_zmw", "spending_total_zmw", "source"),
+    "revenue.csv": (
+        "book_year",
+        "line",
+        "fiscal_year",
+        "stage",
+        "group_code",
+        "group_name",
+        "item_code",
+        "item_name",
+        "amount_zmw",
+    ),
+    "spending.csv": ("book_year", "fiscal_year", "stage", "basis", "code", "name", "amount_zmw"),
+    "cdf_stories.csv": (
+        "post_id",
+        "published_on",
+        "title",
+        "url",
+        "summary",
+        "constituencies",
+        "sectors",
+        "status",
+        "largest_amount_zmw",
+        "completion_pct",
+    ),
+    "checks.csv": ("dataset", "name", "status", "detail"),
+}
+FILES = (*HEADERS, "sources.json")
 
 
 class ChecksFailed(Exception):
@@ -30,15 +60,20 @@ class ChecksFailed(Exception):
         self.failed = failed
 
 
-def _write(path: Path, header: Sequence[str], rows: Iterable[Sequence[Any]]) -> int:
+def write_csv(f: IO[str], header: Sequence[str], rows: Iterable[Sequence[Any]]) -> int:
+    """Write rows the way every snapshot file is stored in git: blanks for None, LF line ends."""
+    w = csv.writer(f, lineterminator="\n")
+    w.writerow(header)
     n = 0
-    with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(header)
-        for row in rows:
-            w.writerow(["" if v is None else v for v in row])
-            n += 1
+    for row in rows:
+        w.writerow(["" if v is None else v for v in row])
+        n += 1
     return n
+
+
+def _write(path: Path, rows: Iterable[Sequence[Any]]) -> int:
+    with path.open("w", newline="", encoding="utf-8") as f:
+        return write_csv(f, HEADERS[path.name], rows)
 
 
 def book_rows(book: BudgetBook) -> list[tuple[Any, ...]]:
@@ -124,52 +159,11 @@ def build(raw: Path, out: Path) -> dict[str, int]:
 
     out.mkdir(parents=True, exist_ok=True)
     counts = {
-        "budget_books.csv": _write(
-            out / "budget_books.csv",
-            ("year", "revenue_total_zmw", "spending_total_zmw", "source"),
-            [r for b in books for r in book_rows(b)],
-        ),
-        "revenue.csv": _write(
-            out / "revenue.csv",
-            (
-                "book_year",
-                "line",
-                "fiscal_year",
-                "stage",
-                "group_code",
-                "group_name",
-                "item_code",
-                "item_name",
-                "amount_zmw",
-            ),
-            [r for b in books for r in revenue_rows(b)],
-        ),
-        "spending.csv": _write(
-            out / "spending.csv",
-            ("book_year", "fiscal_year", "stage", "basis", "code", "name", "amount_zmw"),
-            [r for b in books for r in spending_rows(b)],
-        ),
-        "cdf_stories.csv": _write(
-            out / "cdf_stories.csv",
-            (
-                "post_id",
-                "published_on",
-                "title",
-                "url",
-                "summary",
-                "constituencies",
-                "sectors",
-                "status",
-                "largest_amount_zmw",
-                "completion_pct",
-            ),
-            story_rows(found),
-        ),
-        "checks.csv": _write(
-            out / "checks.csv",
-            ("dataset", "name", "status", "detail"),
-            [tuple(asdict(c).values()) for c in checks],
-        ),
+        "budget_books.csv": _write(out / "budget_books.csv", [r for b in books for r in book_rows(b)]),
+        "revenue.csv": _write(out / "revenue.csv", [r for b in books for r in revenue_rows(b)]),
+        "spending.csv": _write(out / "spending.csv", [r for b in books for r in spending_rows(b)]),
+        "cdf_stories.csv": _write(out / "cdf_stories.csv", story_rows(found)),
+        "checks.csv": _write(out / "checks.csv", [tuple(asdict(c).values()) for c in checks]),
     }
     shutil.copyfile(raw / "manifest.json", out / "sources.json")
     return counts

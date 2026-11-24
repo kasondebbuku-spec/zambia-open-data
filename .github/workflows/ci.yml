@@ -35,6 +35,15 @@ jobs:
         run: pytest
       - name: Build the API image
         run: docker build -t zambia-open-data .
+      - name: Run the API image as Render will (migrate, load, serve, restart)
+        run: |
+          # A plain postgresql:// URL, the form Neon hands out.
+          docker run -d --name api --network host -e PORT=8000             -e DATABASE_URL=postgresql://zod:zod@localhost:5432/zod_test zambia-open-data
+          timeout 90 sh -c 'until curl -sf localhost:8000/health; do sleep 1; done' || { docker logs api; exit 1; }
+          curl -sf localhost:8000/v1/downloads/revenue.csv | cmp - data/snapshot/revenue.csv
+          docker restart api
+          timeout 90 sh -c 'until curl -sf localhost:8000/health; do sleep 1; done' || { docker logs api; exit 1; }
+          docker logs api 2>&1 | grep "already loaded"
 
   web:
     runs-on: ubuntu-latest
@@ -79,7 +88,7 @@ jobs:
           timeout 30 sh -c 'until curl -sf localhost:4100/health; do sleep 1; done'
       - name: Smoke test every page against the API
         run: |
-          npm start &
+          PORT=3100 npm start &
           timeout 60 sh -c 'until curl -sf localhost:3100 >/dev/null; do sleep 1; done'
           for page in / /budgets/2025 "/budgets/2025?by=economic" /budgets/2024 /cdf "/cdf?constituency=Matero&sector=education" /about; do
             code=$(curl -s -o /tmp/page.html -w '%{http_code}' "localhost:3100$page")
@@ -88,3 +97,9 @@ jobs:
             grep -q "Zambia Open Data" /tmp/page.html
           done
           test "$(curl -s -o /dev/null -w '%{http_code}' localhost:3100/budgets/2019)" = 404
+          # The site's CSV downloads are the committed snapshot files, byte for byte.
+          for f in budget_books revenue spending cdf_stories checks; do
+            curl -sf "localhost:3100/data/$f.csv" | cmp - "../data/snapshot/$f.csv"
+            echo "same $f.csv"
+          done
+          test "$(curl -s -o /dev/null -w '%{http_code}' localhost:3100/data/nope.csv)" = 404

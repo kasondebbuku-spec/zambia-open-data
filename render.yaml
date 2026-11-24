@@ -1,0 +1,38 @@
+# Render blueprint: Render reads this file and creates both services.
+# The database lives on Neon; paste its connection string when Render asks.
+# Step-by-step guide: DEPLOYMENT.md
+services:
+  # The API. Built from the Dockerfile, which migrates the database and loads the
+  # committed snapshot (skipped when it's already loaded) before serving.
+  - type: web
+    name: zambia-open-data-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeploy: true # merging a data refresh to main republishes the data
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL # Neon's *direct* connection string (host without "-pooler")
+        sync: false
+      - key: CORS_ORIGINS # open data: any website may read the API from a browser
+        value: "*"
+
+  # The explorer website.
+  - type: web
+    name: zambia-open-data
+    runtime: node
+    rootDir: web
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /about
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: API_URL # the API's public address, e.g. https://zambia-open-data-api.onrender.com
+        sync: false

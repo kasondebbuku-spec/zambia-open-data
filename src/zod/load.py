@@ -14,7 +14,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
-from sqlalchemy import delete, insert
+from sqlalchemy import delete, insert, select
 from sqlalchemy.orm import Session
 
 from .db import BudgetBook, CdfStory, LoadRun, QualityCheck, RevenueLine, SourceRow, SpendingLine
@@ -99,6 +99,12 @@ def read_snapshot(folder: Path) -> dict[type[Any], list[dict[str, Any]]]:
         ],
         QualityCheck: _rows(folder / "checks.csv"),
     }
+
+
+def is_loaded(session: Session, folder: Path) -> bool:
+    """True when the last load was this exact snapshot, so loading it again would change nothing."""
+    last = session.scalars(select(LoadRun.snapshot_sha256).order_by(LoadRun.id.desc()).limit(1)).first()
+    return last == snapshot_sha256(folder)
 
 
 def load(session: Session, folder: Path) -> int:

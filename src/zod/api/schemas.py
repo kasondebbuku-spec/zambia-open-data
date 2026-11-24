@@ -103,3 +103,12 @@ class Quality(BaseModel):
     summary: dict[str, int]
     checks: list[CheckOut]
     sources: list[SourceOut]
+
+
+class Download(BaseModel):
+    file: str
+    description: str
+    rows: int
+    bytes: int
+    sha256: str = Field(description="Fingerprint of the file, to check a copy is unchanged.")
+    url: str

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
-import { api, type Check } from "@/lib/api";
+import { api, apiUrl, type Check } from "@/lib/api";
 import { longDate } from "@/lib/format";
+
+function size(bytes: number): string {
+  return bytes >= 1024 ? `${Math.round(bytes / 1024)} KB` : `${bytes} bytes`;
+}
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "About the data" };
@@ -13,7 +17,7 @@ const STATUS: Record<Check["status"], { icon: string; label: string; className: 
 };
 
 export default async function About() {
-  const q = await api.quality();
+  const [q, files] = await Promise.all([api.quality(), api.downloads()]);
   const order = { fail: 0, warn: 1, pass: 2 };
   const checks = [...q.checks].sort((a, b) => order[a.status] - order[b.status]);
 
@@ -108,22 +112,62 @@ export default async function About() {
         </div>
       </Section>
 
-      <Section title="Use the data">
-        <ul className="space-y-2 text-sm text-ink-2">
-          <li>
-            <strong className="text-ink">CSV files:</strong>{" "}
-            <a className="underline" href="https://github.com/kasondebbuku-spec/zambia-open-data/tree/main/data/snapshot">
-              data/snapshot on GitHub
-            </a>
-            , with a{" "}
+      <Section
+        title="Download the data"
+        intro={
+          <>
+            Plain CSV (UTF-8, comma-separated) that opens in Excel. The columns are explained in the{" "}
             <a className="underline" href="https://github.com/kasondebbuku-spec/zambia-open-data/blob/main/data/README.md">
               data dictionary
             </a>
             .
+          </>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-line text-left text-ink-2">
+                <th scope="col" className="py-2 pr-4 font-medium">File</th>
+                <th scope="col" className="hidden py-2 pr-4 font-medium sm:table-cell">What it holds</th>
+                <th scope="col" className="py-2 pr-4 text-right font-medium">Rows</th>
+                <th scope="col" className="py-2 text-right font-medium">Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {files.map((f) => (
+                <tr key={f.file} className="border-b border-line last:border-0">
+                  <td className="py-2 pr-4">
+                    <a className="font-medium whitespace-nowrap underline" href={`/data/${f.file}`} download>
+                      {f.file}
+                    </a>
+                    <span className="mt-0.5 block text-ink-2 sm:hidden">{f.description}</span>
+                  </td>
+                  <td className="hidden py-2 pr-4 text-ink-2 sm:table-cell">{f.description}</td>
+                  <td className="py-2 pr-4 text-right tabular-nums">{f.rows.toLocaleString("en-ZM")}</td>
+                  <td className="py-2 text-right whitespace-nowrap tabular-nums text-ink-2">{size(f.bytes)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section title="Use the data">
+        <ul className="space-y-2 text-sm text-ink-2">
+          <li>
+            <strong className="text-ink">API:</strong> free, read-only, no key.{" "}
+            <a className="underline" href={`${apiUrl()}/docs`}>
+              Interactive documentation
+            </a>
+            .
           </li>
           <li>
-            <strong className="text-ink">API:</strong> free, read-only, no key. The interactive documentation is
-            at <code className="rounded bg-plane px-1">/docs</code> on the API server.
+            <strong className="text-ink">Code and history:</strong> every change to the data is a commit in{" "}
+            <a className="underline" href="https://github.com/kasondebbuku-spec/zambia-open-data">
+              the GitHub repository
+            </a>
+            .
           </li>
           <li>
             <strong className="text-ink">Limits:</strong> only the 2024 and 2025 books have readable text; earlier

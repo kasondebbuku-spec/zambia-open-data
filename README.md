@@ -41,6 +41,7 @@ flowchart LR
   pg --> api[FastAPI<br/>/v1/...]
   api --> web[Next.js explorer<br/>charts + CDF stories]
   snap -.->|committed, so CI and<br/>deploys never need the site| ci[CI / Docker]
+  cron[monthly GitHub Action] -.->|fetch + build;<br/>PR if the data changed| snap
 ```
 
 1. **`zod fetch`** downloads the two budget books and every news post through the
@@ -50,8 +51,10 @@ flowchart LR
    fails, the snapshot is not written. It then writes `data/snapshot/`, the published
    dataset, which is plain CSV that opens in Excel.
 3. **`zod load`** replaces the database contents in **one transaction**. Readers see the
-   old dataset or the new one, never a mix. Loading the same snapshot twice gives
-   identical data.
+   old dataset or the new one, never a mix. If the database already holds this exact
+   snapshot (same SHA-256), it does nothing, so the API can run it on every start.
+4. **Every month** a GitHub Action repeats steps 1 and 2. If the data changed and every
+   check passed, it opens a pull request. Merging it redeploys the site with the new data.
 
 ## Quality checks
 
@@ -78,7 +81,8 @@ A Next.js site in [`web/`](web) reads the API on the server and shows:
   year, and every revenue line, grouped as the council groups them.
 * **CDF projects:** stories per constituency, plus filters by constituency, sector, stage
   and words. The filters are a plain form, so they work without JavaScript.
-* **About the data:** the method, every quality check and the source fingerprints.
+* **About the data:** the method, every quality check, the source fingerprints and CSV
+  downloads.
 
 The charts follow a fixed spec rather than a chart library's defaults:
 
@@ -113,6 +117,8 @@ OpenAPI docs.
 | `GET /v1/cdf/stories?constituency=Matero&sector=health&q=clinic` | CDF stories, filtered and paged, newest first |
 | `GET /v1/cdf/constituencies` | Story counts and sectors for each of Lusaka's seven constituencies |
 | `GET /v1/quality` | Every check, the source fingerprints and when the data was loaded |
+| `GET /v1/downloads` | The dataset's CSV files, with row counts and SHA-256 fingerprints |
+| `GET /v1/downloads/revenue.csv` | One CSV file, byte for byte the same as [`data/snapshot`](data/snapshot) |
 
 ```console
 $ curl -s localhost:8000/v1/budgets
@@ -143,10 +149,13 @@ uvicorn zod.api.main:app --reload --port 8000
 
 To rebuild the dataset from the council's website: `zod fetch && zod build`.
 
+To put it online (Neon for the database, Render for the API and the website), follow
+[DEPLOYMENT.md](DEPLOYMENT.md). [`render.yaml`](render.yaml) describes both services.
+
 ## Tests
 
 ```bash
-pytest                  # 29 tests; API tests need TEST_DATABASE_URL (a database whose name ends in _test)
+pytest                  # 32 tests; API tests need TEST_DATABASE_URL (a database whose name ends in _test)
 cd web && npm test      # formatting, headline casing and query building
 ```
 
@@ -158,14 +167,15 @@ cd web && npm test      # formatting, headline casing and query building
 * **Migrations** run up, down and up again on an empty database.
 * **API** tests run on PostgreSQL loaded with the real snapshot. They cover filters,
   paging, bad input and the 404 message. One test shows that a failed load leaves the old
-  data in place.
+  data in place. Another proves each CSV download is byte for byte the committed file.
 
 CI runs two jobs on every push:
 
-* **API:** lint (ruff), strict type checking (mypy), the tests on PostgreSQL 16 and a Docker
-  build.
+* **API:** lint (ruff), strict type checking (mypy) and the tests on PostgreSQL 16. Then it
+  builds the Docker image and runs it as Render does: migrate, load, serve. It restarts the
+  image to check that a second start skips the load.
 * **Website:** lint, type checking, unit tests and a production build. Then it starts the
-  real API on the snapshot and smoke-tests every page, including the 404.
+  real API on the snapshot and smoke-tests every page, the 404 and every CSV download.
 
 ## Engineering decisions
 
@@ -178,6 +188,8 @@ CI runs two jobs on every push:
 | Year-on-year changes use **this year's book only** | Programme codes and names change between books (Veterinary services, code 14, becomes Fisheries and Livestock, code 17). Each book reprints last year in its own codes, so comparing within one book is like for like. |
 | Tag each money column with a **stage** (`budget`, `prior`, `projection`) | Each book prints three years. Without the stage, a 2026 projection from the 2024 book could be mistaken for an approved budget. |
 | Load in **one transaction** | Readers never see a half-loaded dataset. A failed load changes nothing (this is tested). |
+| Build **downloads from the database**, in the snapshot's exact format | One source of truth: the files people download always match what the API serves, and a test proves they equal the committed files. |
+| Refresh by **pull request**, not by pushing to `main` | A person sees what changed before it goes live. A failed check stops the refresh before anything is proposed. |
 | News status reads the **headline first** | Bodies often recall earlier stages ("once under construction, now handed over"). The headline says what the story is about. |
 
 ## Limits
@@ -191,8 +203,8 @@ CI runs two jobs on every push:
 ## Roadmap
 
 * ~~**Milestone 2:** the Next.js explorer.~~ Done.
-* **Milestone 3:** a public deployment with a live demo, a scheduled monthly refresh, and
-  CSV downloads from the API.
+* ~~**Milestone 3:** deployment (Render + Neon), monthly refresh and CSV downloads.~~ Done.
+* **Next:** OCR for the scanned 2018–2023 financial statements, so the series goes further back.
 
 ## Credits and licence
 
