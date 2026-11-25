@@ -60,6 +60,15 @@ export type Quality = {
   sources: Source[];
 };
 
+export type Download = {
+  file: string;
+  description: string;
+  rows: number;
+  bytes: number;
+  sha256: string;
+  url: string;
+};
+
 export class ApiError extends Error {
   constructor(
     public status: number,
@@ -96,4 +105,5 @@ export const api = {
   stories: (f: StoryFilters) => get<Page<Story>>(`/v1/cdf/stories?${storiesQuery(f)}`),
   constituencies: () => get<ConstituencySummary[]>("/v1/cdf/constituencies"),
   quality: () => get<Quality>("/v1/quality"),
+  downloads: () => get<Download[]>("/v1/downloads"),
 };

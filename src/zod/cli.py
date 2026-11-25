@@ -2,7 +2,7 @@
 
 zod fetch    download the budget books and news posts from lcc.gov.zm into data/raw
 zod build    parse and check them, then write data/snapshot (stops if a check fails)
-zod load     put data/snapshot into PostgreSQL in one transaction
+zod load     put data/snapshot into PostgreSQL in one transaction (skipped if already loaded)
 """
 
 from __future__ import annotations
@@ -28,9 +28,9 @@ def main(argv: list[str] | None = None) -> int:
     build_cmd = sub.add_parser("build", help="parse, check and write the snapshot")
     build_cmd.add_argument("--raw", type=Path, default=RAW)
     build_cmd.add_argument("--out", type=Path, default=SNAPSHOT)
-    sub.add_parser("load", help="load the snapshot into the database").add_argument(
-        "--snapshot", type=Path, default=SNAPSHOT
-    )
+    load_cmd = sub.add_parser("load", help="load the snapshot into the database")
+    load_cmd.add_argument("--snapshot", type=Path, default=SNAPSHOT)
+    load_cmd.add_argument("--force", action="store_true", help="load even if this snapshot is already loaded")
     args = parser.parse_args(argv)
 
     if args.command == "fetch":
@@ -55,8 +55,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     from .db import session_factory
-    from .load import load
+    from .load import is_loaded, load
 
+    # The API container runs this on every start; skip the work when nothing changed.
+    with session_factory()() as session:
+        if not args.force and is_loaded(session, args.snapshot):
+            print(f"{args.snapshot} is already loaded; nothing to do (use --force to reload)")
+            return 0
     with session_factory()() as session:
         print(f"Loaded {load(session, args.snapshot):,} rows from {args.snapshot}")
     return 0

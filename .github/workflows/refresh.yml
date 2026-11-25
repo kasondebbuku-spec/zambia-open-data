@@ -1,0 +1,60 @@
+name: Monthly data refresh
+
+# On the 1st of every month, download the council's documents again and rebuild the
+# snapshot. If the data changed (and every check still passes) this opens a pull request
+# to review; merging it redeploys the site with the new data. A failed check fails the
+# job, so nothing broken is ever proposed.
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 06:00 UTC = 08:00 in Lusaka
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[pipeline]"
+      - name: Fetch from lcc.gov.zm
+        run: zod fetch
+      - name: Parse and check
+        run: zod build
+      - name: Open a pull request if the data changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # sources.json changes whenever the council posts anything (new fingerprints);
+          # only propose a refresh when the published data itself changed.
+          if git diff --quiet -- 'data/snapshot/*.csv'; then
+            echo "No change to the data." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          month=$(date -u +%Y-%m)
+          branch="data/refresh-$month"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add data/snapshot
+          git commit -m "Data refresh $month"
+          git push --force origin "$branch"
+          {
+            echo "## What changed"
+            echo
+            echo '```'
+            git diff --stat HEAD~1 -- data/snapshot
+            echo '```'
+            echo
+            echo "Every quality check passed (see data/snapshot/checks.csv). Merging redeploys the site."
+          } > body.md
+          gh pr view "$branch" >/dev/null 2>&1 \
+            || gh pr create --head "$branch" --title "Data refresh $month" --body-file body.md \
+            || echo "::warning::Pushed $branch but couldn't open the pull request. Allow GitHub Actions to create pull requests in the repository settings, or open it by hand."
+          cat body.md >> "$GITHUB_STEP_SUMMARY"

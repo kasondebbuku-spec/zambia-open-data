@@ -140,3 +140,54 @@ def test_a_failed_load_keeps_the_old_data(loaded: None, tmp_path: Any) -> None:
         load(s, broken)  # two stories with the same post id
     with session_factory()() as s:
         assert s.scalar(select(func.count()).select_from(RevenueLine)) == before
+
+
+def test_downloads_are_the_committed_files(client: Any) -> None:
+    import csv
+    import hashlib
+    import io
+
+    listing = client.get("/v1/downloads").json()
+    assert [d["file"] for d in listing] == [
+        "budget_books.csv",
+        "revenue.csv",
+        "spending.csv",
+        "cdf_stories.csv",
+        "checks.csv",
+    ]
+    for d in listing:
+        r = client.get(d["url"])
+        assert r.status_code == 200
+        assert r.headers["content-type"] == "text/csv; charset=utf-8"
+        assert f'filename="lusaka-{d["file"]}"' in r.headers["content-disposition"]
+        committed = (SNAPSHOT / d["file"]).read_bytes().replace(b"\r\n", b"\n")
+        assert r.content == committed, f"{d['file']} differs from data/snapshot"
+        assert hashlib.sha256(r.content).hexdigest() == d["sha256"]
+        assert d["rows"] == len(list(csv.reader(io.StringIO(committed.decode())))) - 1
+
+
+def test_unknown_download_lists_the_files(client: Any) -> None:
+    r = client.get("/v1/downloads/passwords.csv")
+    assert r.status_code == 404
+    assert "revenue.csv" in r.json()["detail"]
+
+
+def test_load_skips_a_snapshot_that_is_already_loaded(loaded: None, tmp_path: Any, capsys: Any) -> None:
+    import shutil
+
+    from zod.cli import main
+    from zod.db import LoadRun, session_factory
+    from zod.load import is_loaded
+
+    changed = tmp_path / "snapshot"
+    shutil.copytree(SNAPSHOT, changed)
+    (changed / "checks.csv").write_text("dataset,name,status,detail\n", encoding="utf-8")
+    with session_factory()() as s:
+        assert is_loaded(s, SNAPSHOT)
+        assert not is_loaded(s, changed)
+        runs = s.scalar(select(func.count()).select_from(LoadRun))
+
+    assert main(["load", "--snapshot", str(SNAPSHOT)]) == 0
+    assert "already loaded" in capsys.readouterr().out
+    with session_factory()() as s:
+        assert s.scalar(select(func.count()).select_from(LoadRun)) == runs

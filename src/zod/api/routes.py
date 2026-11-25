@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import hashlib
 from collections import Counter
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import Response
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
@@ -17,6 +19,7 @@ from ..db import (
     SpendingLine,
     get_session,
 )
+from ..export import EXPORTS, csv_text
 from ..pipeline.news import CONSTITUENCIES, SECTORS
 from . import schemas as s
 
@@ -218,4 +221,45 @@ def quality(db: DB) -> s.Quality:
             s.SourceOut.model_validate(x, from_attributes=True)
             for x in db.scalars(select(SourceRow).order_by(SourceRow.key))
         ],
+    )
+
+
+@router.get("/downloads", response_model=list[s.Download], tags=["downloads"])
+def downloads(db: DB) -> list[s.Download]:
+    """The whole dataset as CSV files, the same as data/snapshot in the GitHub repository."""
+    out = []
+    for name, (description, _) in EXPORTS.items():
+        body, rows = csv_text(db, name)
+        data = body.encode()
+        out.append(
+            s.Download(
+                file=name,
+                description=description,
+                rows=rows,
+                bytes=len(data),
+                sha256=hashlib.sha256(data).hexdigest(),
+                url=f"/v1/downloads/{name}",
+            )
+        )
+    return out
+
+
+@router.get(
+    "/downloads/{file}",
+    tags=["downloads"],
+    response_class=Response,
+    responses={200: {"content": {"text/csv": {}}, "description": "The CSV file"}},
+)
+def download(file: str, db: DB) -> Response:
+    """One CSV file (UTF-8, comma-separated, header row first). Opens in Excel or any data tool."""
+    if file not in EXPORTS:
+        raise HTTPException(404, f"No file called {file!r}. Files: {', '.join(EXPORTS)}.")
+    body, _ = csv_text(db, file)
+    return Response(
+        body,
+        media_type="text/csv; charset=utf-8",
+        headers={
+            "Content-Disposition": f'attachment; filename="lusaka-{file}"',
+            "Cache-Control": "public, max-age=600",
+        },
     )
